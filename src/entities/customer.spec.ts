@@ -68,6 +68,15 @@ describe('Customer bussines rules', () => {
         }).toThrowError("Invalid name")
     })
 
+    test('should throw error when activate customer with undefined address', () => {
+        expect(() => {
+            const costumer = new Customer("123", "Bento")
+
+            costumer.activate()
+
+        }).toThrowError("Address is required")
+    })
+
     test('should activate customer', () => {
 
         const customer = new Customer("123", "Bento")
