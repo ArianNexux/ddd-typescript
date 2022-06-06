@@ -36,6 +36,9 @@ export default class Customer {
         this.validate()
     }
     public activate() {
+        if (this._address === undefined) {
+            throw new Error("Address is required");
+        }
         this._active = true;
     }
 

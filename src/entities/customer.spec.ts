@@ -69,8 +69,10 @@ describe('Customer bussines rules', () => {
     })
 
     test('should activate customer', () => {
-        const customer = new Customer("123", "Bento")
 
+        const customer = new Customer("123", "Bento")
+        const address = new Address("Cacuaco", 123, "000", "Luanda")
+        customer.address = address
         customer.activate()
 
         expect(customer.isActive()).toBe(true)
