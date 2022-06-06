@@ -1,6 +1,43 @@
 import Address from './address'
 import Customer from './customer'
 
+
+
+describe('Address Value Objects', () => {
+    test('should be able to create an address', () => {
+        const address = new Address("Cacuaco", 123, "000", "Luanda")
+
+        expect(address.street).toBe("Cacuaco")
+        expect(address.number).toBe(123)
+        expect(address.zip).toBe("000")
+        expect(address.city).toBe("Luanda")
+    })
+
+    test('should thrown an error on invalid street', () => {
+        expect(() => {
+            const address = new Address("", 123, "000", "Luanda")
+        }).toThrowError("Street is required")
+    })
+
+    test('should thrown an error on invalid number', () => {
+        expect(() => {
+            const address = new Address("Cacuaco", 0, "000", "Luanda")
+        }).toThrowError("Number is required")
+    })
+
+    test('should thrown an error on invalid number', () => {
+        expect(() => {
+            const address = new Address("Cacuaco", 123, "", "Luanda")
+        }).toThrowError("Zip is required")
+    })
+
+    test('should thrown an error on invalid city', () => {
+        expect(() => {
+            const address = new Address("Cacuaco", 123, "000", "")
+        }).toThrowError("City is required")
+    })
+})
+
 describe('Customer bussines rules', () => {
 
     test("should throw error on create a customer without id", () => {
@@ -47,39 +84,16 @@ describe('Customer bussines rules', () => {
         expect(customer.isActive()).toBe(false)
     })
 
-})
-
-describe('Address Value Objects', () => {
-    test('should be able to create an address', () => {
+    test('should set valid address to customer', () => {
         const address = new Address("Cacuaco", 123, "000", "Luanda")
+        const customer = new Customer("123", "Bento", true)
 
-        expect(address.street).toBe("Cacuaco")
-        expect(address.number).toBe(123)
-        expect(address.zip).toBe("000")
-        expect(address.city).toBe("Luanda")
-    })
+        customer.address = address
 
-    test('should thrown an error on invalid street', () => {
-        expect(() => {
-            const address = new Address("", 123, "000", "Luanda")
-        }).toThrowError("Street is required")
-    })
+        expect(customer.address.city).toBe("Luanda")
+        expect(customer.address.zip).toBe("000")
+        expect(customer.address.number).toBe(123)
+        expect(customer.address.street).toBe("Cacuaco")
 
-    test('should thrown an error on invalid number', () => {
-        expect(() => {
-            const address = new Address("Cacuaco", 0, "000", "Luanda")
-        }).toThrowError("Number is required")
-    })
-
-    test('should thrown an error on invalid number', () => {
-        expect(() => {
-            const address = new Address("Cacuaco", 123, "", "Luanda")
-        }).toThrowError("Zip is required")
-    })
-
-    test('should thrown an error on invalid city', () => {
-        expect(() => {
-            const address = new Address("Cacuaco", 123, "000", "")
-        }).toThrowError("City is required")
     })
 })

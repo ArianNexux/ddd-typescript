@@ -28,6 +28,9 @@ export default class Customer {
         this._address = address
     }
 
+    get address(): Address {
+        return this._address
+    }
     public changeName(name: string) {
         this._name = name;
         this.validate()
