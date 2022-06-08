@@ -20,7 +20,9 @@ export default class OrderItem {
     get price(): number {
         return this._price
     }
-
+    changeName(name: string) {
+        this._name = name
+    }
     validate(): boolean {
         if (this._id.length === 0) {
             throw new Error("Id is required");
