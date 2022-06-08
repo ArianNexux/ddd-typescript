@@ -19,6 +19,12 @@ describe('Order item', () => {
         }).toThrowError("Price must be greater than 0")
     })
 
+    test('should be able to change the name of item', () => {
+        const order_item = new OrderItem("123", "Item1", 100)
+        order_item.changeName("Item1-modified")
+
+        expect(order_item.name).toBe("Item1-modified")
+    })
     test('should create an order item', () => {
         const order = new OrderItem("123", "Item1", 100)
         expect(order.id).toBe("123")
