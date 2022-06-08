@@ -21,10 +21,20 @@ describe('Order item', () => {
 
     test('should be able to change the name of item', () => {
         const order_item = new OrderItem("123", "Item1", 100)
+
         order_item.changeName("Item1-modified")
 
         expect(order_item.name).toBe("Item1-modified")
     })
+
+    test('should be able to change the price of item', () => {
+        const order_item = new OrderItem("123", "Item1", 100)
+
+        order_item.changePrice(200)
+
+        expect(order_item.price).toBe(200)
+    })
+
     test('should create an order item', () => {
         const order = new OrderItem("123", "Item1", 100)
         expect(order.id).toBe("123")
