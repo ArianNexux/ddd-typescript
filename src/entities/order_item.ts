@@ -22,6 +22,11 @@ export default class OrderItem {
     }
     changeName(name: string) {
         this._name = name
+        this.validate()
+    }
+    changePrice(price: number) {
+        this._price = price
+        this.validate()
     }
     validate(): boolean {
         if (this._id.length === 0) {
