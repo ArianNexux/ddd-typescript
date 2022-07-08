@@ -57,7 +57,7 @@ export default class Customer {
     }
 
     public changeRewardPoint(r: number) {
-        if (this._id.length <= 0) {
+        if (r <= 0) {
             throw new Error("Invalid reward point")
         }
 
