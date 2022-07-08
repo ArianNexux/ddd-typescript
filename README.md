@@ -1,11 +1,10 @@
 
-# DOMAIN DRIVEN DESIGN COM TYPESCRIPT
+# DOMAIN DRIVEN DESIGN WITH TYPESCRIPT
 
-Este é um simples projecto feito apartir do módulo de Modelagem tática com DDD  do curso FullCycle.
+This is a simple project from the Modeling module made with DDD from the FullCycle course.
 
 
-
-## TECNOLOGIAS UTILIZADAS
+## TECHNOLOGIES USED
 
  - [Typescript](https://www.typescriptlang.org/)
  - [TDD - Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development)
@@ -13,9 +12,9 @@ Este é um simples projecto feito apartir do módulo de Modelagem tática com DD
  
 
 
-## Autor
+## Author
 
 - [@ariannexux](https://www.github.com/ArianNexux)
 
 
-## EM DESENVOLVIMENTO
+## UNDER DEVELOPMENT
