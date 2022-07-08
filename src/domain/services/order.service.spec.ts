@@ -13,7 +13,20 @@ describe('Order Unit tests', () => {
         let order = OrderService.placeOrder(customer, [item])
 
         expect(customer.reward_point).toBe(5)
-        //expect(order.total()).toBe(10)
+        expect(order.total()).toBe(10)
+
+    })
+
+
+    test('should thrown an error when no items are providedr', () => {
+
+        let customer = new Customer("c1", "costumer1")
+        expect(() => {
+            let order = OrderService.placeOrder(customer, [])
+
+
+
+        }).toThrowError("Items are required")
 
     })
     test('should get total of all orders', () => {
@@ -26,4 +39,6 @@ describe('Order Unit tests', () => {
         expect(OrderService.calculateTotal([order, order1])).toBe(600)
 
     })
+
+
 })

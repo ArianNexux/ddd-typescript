@@ -8,8 +8,11 @@ export default class OrderService {
     }
 
     static placeOrder(customer: Customer, items: OrderItem[]): Order {
+        if (items.length === 0) {
+            throw new Error("Items are required");
+        }
         let order = new Order("c1", customer.name, items);
-        customer.changeRewardPoint((order.total() / 2))
+        customer.addRewardPoint((order.total() / 2))
         return order
     }
 }
