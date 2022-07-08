@@ -7,7 +7,9 @@ export default class OrderService {
         return orders.reduce((acc, order) => (acc + order.total()), 0)
     }
 
-    static placeOrder(customer: Customer, items: OrderItem[]) {
-
+    static placeOrder(customer: Customer, items: OrderItem[]): Order {
+        let order = new Order("c1", customer.name, items);
+        customer.changeRewardPoint((order.total() / 2))
+        return order
     }
 }
