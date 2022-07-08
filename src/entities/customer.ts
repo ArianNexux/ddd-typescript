@@ -61,7 +61,7 @@ export default class Customer {
             throw new Error("Invalid reward point")
         }
 
-        this._reward_point = r;
+        this._reward_point += r;
     }
 
 }
