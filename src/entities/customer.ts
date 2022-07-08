@@ -56,7 +56,7 @@ export default class Customer {
         return this._active;
     }
 
-    public changeRewardPoint(r: number) {
+    public addRewardPoint(r: number) {
         if (r <= 0) {
             throw new Error("Invalid reward point")
         }
