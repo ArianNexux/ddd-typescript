@@ -2,7 +2,7 @@ import Address from './address'
 export default class Customer {
 
     private _address: Address
-    private _reward_point: number
+    private _reward_point: number = 0;
 
     constructor(
         private _id: string,
