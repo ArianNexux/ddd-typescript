@@ -107,4 +107,19 @@ describe('Customer bussines rules', () => {
         expect(customer.address.street).toBe("Cacuaco")
 
     })
+
+    test("should set reward point", () => {
+        const customer = new Customer("c1", "customer1")
+
+        customer.changeRewardPoint(10)
+
+        expect(customer.reward_point).toBe(10)
+    })
+
+    test("should throw an error if invalid reward point is provided", () => {
+        const customer = new Customer("c1", "customer1")
+        expect(() => {
+            customer.changeRewardPoint(-1)
+        }).toThrowError("Invalid reward point")
+    })
 })

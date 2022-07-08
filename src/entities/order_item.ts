@@ -4,7 +4,9 @@ export default class OrderItem {
     constructor(
         private _id: string,
         private _name: string,
-        private _price: number
+        private _price: number,
+        private _productId: string,
+        private _quantity: number
     ) {
         this.validate();
 
@@ -18,8 +20,15 @@ export default class OrderItem {
     }
 
     get price(): number {
-        return this._price
+        return this._price * this.quantity
     }
+
+    get quantity(): number {
+        return this._quantity;
+    }
+
+
+
     changeName(name: string) {
         this._name = name
         this.validate()

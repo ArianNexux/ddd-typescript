@@ -3,24 +3,24 @@ import OrderItem from "./order_item"
 describe('Order item', () => {
     test('should throw error on id empty', () => {
         expect(() => {
-            const order = new OrderItem("", "Item1", 100)
+            const order = new OrderItem("", "Item1", 100, "p1", 2)
         }).toThrowError("Id is required")
     })
 
     test('should throw error on name empty', () => {
         expect(() => {
-            const order = new OrderItem("123", "", 100)
+            const order = new OrderItem("123", "", 100, "p1", 2)
         }).toThrowError("Name is required")
     })
 
     test('should throw error on price less than 0', () => {
         expect(() => {
-            const order = new OrderItem("123", "Item1", -1)
+            const order = new OrderItem("123", "Item1", -1, "p1", 2)
         }).toThrowError("Price must be greater than 0")
     })
 
     test('should be able to change the name of item', () => {
-        const order_item = new OrderItem("123", "Item1", 100)
+        const order_item = new OrderItem("123", "Item1", 100, "p1", 2)
 
         order_item.changeName("Item1-modified")
 
@@ -28,17 +28,19 @@ describe('Order item', () => {
     })
 
     test('should be able to change the price of item', () => {
-        const order_item = new OrderItem("123", "Item1", 100)
+        const order_item = new OrderItem("123", "Item1", 100, "p1", 2)
 
         order_item.changePrice(200)
 
-        expect(order_item.price).toBe(200)
+        expect(order_item.price).toBe(400)
     })
 
     test('should create an order item', () => {
-        const order = new OrderItem("123", "Item1", 100)
+        const order = new OrderItem("123", "Item1", 100, "p1", 2)
         expect(order.id).toBe("123")
         expect(order.name).toBe("Item1")
-        expect(order.price).toBe(100)
+        expect(order.price).toBe(200)
     })
+
+
 })

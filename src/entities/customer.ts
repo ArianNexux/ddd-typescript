@@ -2,6 +2,7 @@ import Address from './address'
 export default class Customer {
 
     private _address: Address
+    private _reward_point: number
 
     constructor(
         private _id: string,
@@ -31,6 +32,11 @@ export default class Customer {
     get address(): Address {
         return this._address
     }
+
+    get reward_point(): number {
+        return this._reward_point;
+    }
+
     public changeName(name: string) {
         this._name = name;
         this.validate()
@@ -48,6 +54,14 @@ export default class Customer {
 
     public isActive(): boolean {
         return this._active;
+    }
+
+    public changeRewardPoint(r: number) {
+        if (this._id.length <= 0) {
+            throw new Error("Invalid reward point")
+        }
+
+        this._reward_point = r;
     }
 
 }
