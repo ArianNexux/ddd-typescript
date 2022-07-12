@@ -12,9 +12,11 @@ export default class Product {
     get name(): string {
         return this._name;
     }
+
     get price(): number {
         return this._price;
     }
+
     changeName(name: string) {
         this.validate()
         this._name = name;
