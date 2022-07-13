@@ -7,13 +7,15 @@ describe('Product repository test', () => {
 
     let sequelize: Sequelize
 
-    beforeEach(() => {
+    beforeEach(async () => {
         sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
             logging: false,
             sync: { force: true }
         });
+        sequelize.addModels([ProductModel]);
+        await sequelize.sync();
     })
     test('should create a Product', async () => {
         const product = new Product("123", "product 1", 100)
@@ -24,8 +26,12 @@ describe('Product repository test', () => {
         await productRepository.create(product)
 
         const productModel = await ProductModel.findOne({ where: { id: product.id } })
-
-        expect(productModel.toJSON()).toStrictEqual(product)
+        console.table(productModel.toJSON())
+        expect(productModel.toJSON()).toStrictEqual({
+            id: product.id,
+            name: product.name,
+            price: product.price
+        })
 
     })
     afterEach(async () => {

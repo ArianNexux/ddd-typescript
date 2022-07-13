@@ -1,4 +1,5 @@
 import { Table, Model, PrimaryKey, Column } from "sequelize-typescript";
+import Product from "../../../../domain/entities/product";
 
 @Table({
     tableName: "products",
@@ -14,4 +15,12 @@ export default class ProductModel extends Model {
 
     @Column({ allowNull: false })
     declare price: number
+
+    public create(product: Product) {
+        return ProductModel.create({
+            id: product.id,
+            name: product.name,
+            price: product.price
+        })
+    }
 }

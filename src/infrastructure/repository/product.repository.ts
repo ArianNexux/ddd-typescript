@@ -6,16 +6,15 @@ import productModel from "../db/sequelize/model/product.model";
 
 export default class ProductRepository implements ProductRepositoryInterface {
     constructor(
-        private model: any
+        private model: ProductModel
     ) {
 
     }
-    create(entity: Product): Promise<void> {
-        return this.model.create({
-            id: entity.id,
-            name: entity.name,
-            price: entity.price
-        });
+    async create(entity: Product): Promise<void> {
+        if (!entity) {
+            throw new Error("Product is required")
+        }
+        const product = await this.model.create(entity);
     }
 
     update(entity: Product): Promise<void> {
