@@ -20,7 +20,7 @@ describe('Product repository test', () => {
     test('should create a Product', async () => {
         const product = new Product("123", "product 1", 100)
 
-        const model = new ProductModel(Sequelize)
+        const model = new ProductModel()
         const productRepository = new ProductRepository(model)
 
         await productRepository.create(product)
@@ -34,6 +34,31 @@ describe('Product repository test', () => {
         })
 
     })
+
+    test('should update a product', async () => {
+        const product = new Product("123", "product 1", 100)
+
+        const model = new ProductModel()
+        const productRepository = new ProductRepository(model)
+
+        await productRepository.create(product)
+
+
+        product.changeName("product updated")
+        product.changePrice(200)
+
+        await productRepository.update(product)
+
+        const productModel = await ProductModel.findOne({ where: { id: product.id } })
+
+        console.table(product)
+        expect(productModel.toJSON()).toStrictEqual({
+            id: product.id,
+            name: product.name,
+            price: product.price
+        })
+    })
+
     afterEach(async () => {
         await sequelize.close();
     })
