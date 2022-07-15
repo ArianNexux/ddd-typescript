@@ -39,6 +39,7 @@ describe('Product repository test', () => {
         const product = new Product("123", "product 1", 100)
 
         const model = new ProductModel()
+
         const productRepository = new ProductRepository(model)
 
         await productRepository.create(product)
@@ -51,6 +52,7 @@ describe('Product repository test', () => {
 
         const productModel = await ProductModel.findOne({ where: { id: product.id } })
 
+        console.table(productModel.toJSON())
         console.table(product)
         expect(productModel.toJSON()).toStrictEqual({
             id: product.id,

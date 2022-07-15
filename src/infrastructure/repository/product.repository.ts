@@ -22,7 +22,14 @@ export default class ProductRepository implements ProductRepositoryInterface {
         if (!entity) {
             throw new Error("Product is required")
         }
-        const product = await this.model.update(entity);
+        await ProductModel.update({
+            name: entity.name,
+            price: entity.price
+        }, {
+            where: {
+                id: entity.id
+            }
+        });
     }
     find(id: string): Promise<Product> {
         throw new Error("Method not implemented.");
