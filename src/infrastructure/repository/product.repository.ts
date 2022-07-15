@@ -10,6 +10,7 @@ export default class ProductRepository implements ProductRepositoryInterface {
     ) {
 
     }
+
     async create(entity: Product): Promise<void> {
         if (!entity) {
             throw new Error("Product is required")
@@ -17,8 +18,11 @@ export default class ProductRepository implements ProductRepositoryInterface {
         const product = await this.model.create(entity);
     }
 
-    update(entity: Product): Promise<void> {
-        throw new Error("Method not implemented.");
+    async update(entity: Product): Promise<void> {
+        if (!entity) {
+            throw new Error("Product is required")
+        }
+        const product = await this.model.update(entity);
     }
     find(id: string): Promise<Product> {
         throw new Error("Method not implemented.");
