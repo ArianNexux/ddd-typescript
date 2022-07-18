@@ -5,17 +5,15 @@ import ProductModel from "../db/sequelize/model/product.model";
 import productModel from "../db/sequelize/model/product.model";
 
 export default class ProductRepository implements ProductRepositoryInterface {
-    constructor(
-        private model: ProductModel
-    ) {
-
-    }
-
     async create(entity: Product): Promise<void> {
         if (!entity) {
             throw new Error("Product is required")
         }
-        const product = await this.model.create(entity);
+        const product = await ProductModel.create({
+            id: entity.id,
+            name: entity.name,
+            price: entity.price
+        });
     }
 
     async update(entity: Product): Promise<void> {
@@ -31,9 +29,20 @@ export default class ProductRepository implements ProductRepositoryInterface {
             }
         });
     }
-    find(id: string): Promise<Product> {
-        throw new Error("Method not implemented.");
-    }
+    async find(id: string): Promise<Product> {
+        if (id === "") {
+            throw new Error("Product is required");
+        }
+        const product = await ProductModel.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        return new Product(product.id, product.name, product.price);
+    };
+
+
     findAll(): Promise<Product[]> {
         throw new Error("Method not implemented.");
     }
