@@ -81,7 +81,7 @@ describe('Customer bussines rules', () => {
 
         const customer = new Customer("123", "Bento")
         const address = new Address("Cacuaco", 123, "000", "Luanda")
-        customer.address = address
+        customer.changeAddress(address)
         customer.activate()
 
         expect(customer.isActive()).toBe(true)
@@ -99,7 +99,7 @@ describe('Customer bussines rules', () => {
         const address = new Address("Cacuaco", 123, "000", "Luanda")
         const customer = new Customer("123", "Bento", true)
 
-        customer.address = address
+        customer.changeAddress(address)
 
         expect(customer.address.city).toBe("Luanda")
         expect(customer.address.zip).toBe("000")
