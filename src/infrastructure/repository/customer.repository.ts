@@ -51,7 +51,6 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
         return customer
 
 
-
     }
 
     findAll(): Promise<Customer[]> {
