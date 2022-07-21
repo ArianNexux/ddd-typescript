@@ -15,7 +15,7 @@ export default class CustomerModel extends Model {
     declare name: string
 
     @Column({ allowNull: false })
-    declare street: number
+    declare street: string
 
     @Column({ allowNull: false })
     declare number: number
