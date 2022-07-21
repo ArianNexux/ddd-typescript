@@ -25,10 +25,6 @@ export default class Customer {
         return this._name;
     }
 
-    set address(address: Address) {
-        this._address = address
-    }
-
     get address(): Address {
         return this._address
     }
@@ -56,6 +52,9 @@ export default class Customer {
         return this._active;
     }
 
+    public changeAddress(address: Address) {
+        this._address = address
+    }
     public addRewardPoint(r: number) {
         if (r <= 0) {
             throw new Error("Invalid reward point")
