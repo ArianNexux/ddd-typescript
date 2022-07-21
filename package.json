@@ -20,6 +20,8 @@
     "ts-node": "^10.8.1"
   },
   "dependencies": {
+    "@swc/core": "^1.2.218",
+    "@swc/jest": "^0.2.22",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.21.3",
     "sequelize-typescript": "^2.1.3",
