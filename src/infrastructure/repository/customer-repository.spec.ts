@@ -97,29 +97,28 @@ describe('Customer Repository', () => {
         const customerRepository = new CustomerRepository()
         await customerRepository.create(customer)
         await customerRepository.create(customer1)
-
+        const customers = [customer, customer1]
         const customerModels = await CustomerModel.findAll()
 
-        expect(customerModels.map(customer => customer.toJSON())).toStrictEqual([
-            {
-                id: customer.id,
-                name: customer.name,
-                city: customer.address.city,
-                zipcode: customer.address.zip,
-                number: customer.address.number,
-                street: customer.address.street,
-                rewardPoints: customer.reward_point
-            },
-            {
-                id: customer1.id,
-                name: customer1.name,
-                city: customer1.address.city,
-                zipcode: customer1.address.zip,
-                number: customer1.address.number,
-                street: customer1.address.street,
-                rewardPoints: customer1.reward_point
-
-            }])
+        console.table(customerModels.map(customer => customer.toJSON()));
+        expect(customerModels.map(customer => customer.toJSON())).toEqual([{
+            id: customer.id,
+            name: customer.name,
+            city: customer.address.city,
+            zipcode: customer.address.zip,
+            number: customer.address.number,
+            street: customer.address.street,
+            rewardPoints: customer.reward_point
+        },
+        {
+            id: customer1.id,
+            name: customer1.name,
+            city: customer1.address.city,
+            zipcode: customer1.address.zip,
+            number: customer1.address.number,
+            street: customer1.address.street,
+            rewardPoints: customer1.reward_point
+        }])
     })
     afterEach(async () => {
         sequelize.close()
