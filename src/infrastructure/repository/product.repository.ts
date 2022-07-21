@@ -2,7 +2,6 @@ import { Model } from "sequelize-typescript";
 import Product from "../../domain/entities/product";
 import ProductRepositoryInterface from "../../domain/repository/product-repository.interface";
 import ProductModel from "../db/sequelize/model/product.model";
-import productModel from "../db/sequelize/model/product.model";
 
 export default class ProductRepository implements ProductRepositoryInterface {
     async create(entity: Product): Promise<void> {
@@ -43,7 +42,8 @@ export default class ProductRepository implements ProductRepositoryInterface {
     };
 
 
-    findAll(): Promise<Product[]> {
-        throw new Error("Method not implemented.");
+    async findAll(): Promise<Product[]> {
+        const products = await ProductModel.findAll();
+        return products.map((product) => (new Product(product.id, product.name, product.price)))
     }
 }      

@@ -77,6 +77,23 @@ describe('Product repository test', () => {
         })
     })
 
+    test("should find all products", async () => {
+        const product = new Product("123", "product 1", 100)
+        const product1 = new Product("1234", "product 2", 200)
+
+        const productRepository = new ProductRepository()
+        await productRepository.create(product)
+        await productRepository.create(product1)
+
+        const products = [product, product1]
+
+        const productModel = await ProductModel.findAll()
+
+        const productFound = await productRepository.findAll()
+
+        expect(productModel).toEqual(productFound)
+    })
+
 
     afterEach(async () => {
         await sequelize.close();
