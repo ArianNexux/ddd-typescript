@@ -1,4 +1,8 @@
 import { Sequelize } from "sequelize-typescript"
+import Customer from "../../domain/entities/customer";
+import Order from "../../domain/entities/order";
+import OrderItem from "../../domain/entities/order_item";
+import Product from "../../domain/entities/product";
 import CustomerModel from "../db/sequelize/model/customer.model";
 import OrderItemModel from "../db/sequelize/model/order-item.model";
 import OrderModel from "../db/sequelize/model/order.model";
@@ -19,7 +23,12 @@ describe('Order Aggregate', () => {
         await sequelize.sync();
     })
     test('should create an order', () => {
-
+        const customer = new Customer('1', 'John Doe');
+        const product = new Product('1', 'Product 1', 10);
+        /*  const item1 = new OrderItem(product.id, 2);
+          const item2 = new OrderItem(product,id, 3);
+        const order = new Order('1', customer.id, [new OrderItem(product, 2)]);
+        */
     })
 
     afterEach(async () => {
