@@ -25,10 +25,11 @@ describe('Order Aggregate', () => {
     test('should create an order', () => {
         const customer = new Customer('1', 'John Doe');
         const product = new Product('1', 'Product 1', 10);
-        /*  const item1 = new OrderItem(product.id, 2);
-          const item2 = new OrderItem(product,id, 3);
-        const order = new Order('1', customer.id, [new OrderItem(product, 2)]);
-        */
+        const item1 = new OrderItem("123", "item1", 100, product.id, 2);
+        const item2 = new OrderItem("321", "item2", 200, product.id, 3);
+        const items = [item1, item2];
+        const order = new Order('1', customer.id, items);
+
     })
 
     afterEach(async () => {
