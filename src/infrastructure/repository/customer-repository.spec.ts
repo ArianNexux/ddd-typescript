@@ -100,7 +100,6 @@ describe('Customer Repository', () => {
         const customers = [customer, customer1]
         const customerModels = await CustomerModel.findAll()
 
-        console.table(customerModels.map(customer => customer.toJSON()));
         expect(customerModels.map(customer => customer.toJSON())).toEqual([{
             id: customer.id,
             name: customer.name,
