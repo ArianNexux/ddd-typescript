@@ -1,3 +1,4 @@
+import { Order } from "sequelize/types";
 import OrderRepository from "../../infrastructure/repository/order.repository";
 import RepositoryInterface from "./repository-interface";
 
