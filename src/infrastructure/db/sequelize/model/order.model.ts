@@ -13,7 +13,7 @@ export default class OrderModel extends Model {
 
     @ForeignKey(() => CustomerModel)
     @Column({ allowNull: false })
-    declare costumer_id: string
+    declare customer_id: string
 
     @BelongsTo(() => CustomerModel)
     declare customer: CustomerModel;
