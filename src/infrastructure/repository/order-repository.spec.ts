@@ -7,6 +7,7 @@ import CustomerModel from "../db/sequelize/model/customer.model";
 import OrderItemModel from "../db/sequelize/model/order-item.model";
 import OrderModel from "../db/sequelize/model/order.model";
 import ProductModel from "../db/sequelize/model/product.model";
+import OrderRepository from "./order.repository";
 
 
 describe('Order Aggregate', () => {
@@ -30,6 +31,7 @@ describe('Order Aggregate', () => {
         const items = [item1, item2];
         const order = new Order('1', customer.id, items);
 
+        const orderRepository = new OrderRepository();
     })
 
     afterEach(async () => {
