@@ -133,6 +133,58 @@ describe('Order Aggregate', () => {
             ]
         });
     })
+
+    test("should find a record of order", async () => {
+        const customer = new Customer('134', 'John Doe');
+        const address = new Address('1', 5265, 'Anytown', 'CA');
+
+        const product = new Product('1', 'Product 1', 10);
+        const item1 = new OrderItem("123", "item1", 100, product.id, 2);
+        const item2 = new OrderItem("321", "item2", 200, product.id, 3);
+        const items = [item1, item2];
+        const order = new Order('1', customer.id, items);
+
+        const productRepository = new ProductRepository();
+        const customerRepository = new CustomerRepository();
+        const orderRepository = new OrderRepository();
+
+        customer.changeAddress(address)
+
+        await productRepository.create(product)
+        await customerRepository.create(customer)
+        await orderRepository.create(order)
+
+        const orderModel = await OrderModel.findOne({
+            where: {
+                id: order.id
+            },
+            include: ["items"]
+        });
+
+        expect(orderModel.toJSON()).toStrictEqual({
+            id: order.id,
+            customer_id: customer.id,
+            total: order.total(),
+            items: [
+                {
+                    id: item1.id,
+                    name: item1.name,
+                    quantity: item1.quantity,
+                    product_id: product.id,
+                    price: item1.price,
+                    order_id: order.id
+                },
+                {
+                    id: item2.id,
+                    name: item2.name,
+                    quantity: item2.quantity,
+                    price: item2.price,
+                    product_id: product.id,
+                    order_id: order.id
+                }
+            ]
+        });
+    })
     afterEach(async () => {
         await sequelize.close();
     })
