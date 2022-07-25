@@ -25,7 +25,6 @@ describe('Product repository test', () => {
         await productRepository.create(product)
 
         const productModel = await ProductModel.findOne({ where: { id: product.id } })
-        console.table(productModel.toJSON())
         expect(productModel.toJSON()).toStrictEqual({
             id: product.id,
             name: product.name,
@@ -50,8 +49,7 @@ describe('Product repository test', () => {
 
         const productModel = await ProductModel.findOne({ where: { id: product.id } })
 
-        console.table(productModel.toJSON())
-        console.table(product)
+
         expect(productModel.toJSON()).toStrictEqual({
             id: product.id,
             name: product.name,
