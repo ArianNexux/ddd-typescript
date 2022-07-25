@@ -21,6 +21,10 @@ export default class Order {
         return this._customerId;
     }
 
+    changeCustomerId(customerId: string): void {
+        this._customerId = customerId;
+    }
+
     get items(): OrderItem[] {
         return this._items;
     }
