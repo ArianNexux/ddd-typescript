@@ -27,7 +27,9 @@ export default class OrderItem {
         return this._quantity;
     }
 
-
+    get productId(): string {
+        return this._productId;
+    }
 
     changeName(name: string) {
         this._name = name
