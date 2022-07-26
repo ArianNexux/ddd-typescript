@@ -99,7 +99,8 @@ describe('Order Aggregate', () => {
 
         const newCustomer = new Customer('134', 'John Doe');
         order.changeCustomerId(newCustomer.id)
-
+        const newItem = new OrderItem("1234", "item3", 100, product.id, 2);
+        order.addOrderItem(newItem)
         await orderRepository.update(order)
 
         const orderModel = await OrderModel.findOne({
@@ -127,6 +128,14 @@ describe('Order Aggregate', () => {
                     name: item2.name,
                     quantity: item2.quantity,
                     price: item2.price,
+                    product_id: product.id,
+                    order_id: order.id
+                },
+                {
+                    id: newItem.id,
+                    name: newItem.name,
+                    quantity: newItem.quantity,
+                    price: newItem.price,
                     product_id: product.id,
                     order_id: order.id
                 }
