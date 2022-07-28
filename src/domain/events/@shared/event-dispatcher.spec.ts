@@ -23,7 +23,9 @@ describe("Event Tests", ()=>{
 
         eventDispatcher.unregister("ProductCreatedEvent", eventHandler)
 
-        expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"]).toBeUndefined()
+        expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"]).toBeDefined()
         expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"].length).toBe(0)
     })
+
+
 })
