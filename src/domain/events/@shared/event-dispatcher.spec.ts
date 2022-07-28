@@ -27,5 +27,17 @@ describe("Event Tests", ()=>{
         expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"].length).toBe(0)
     })
 
+    test("should unregister all events", ()=>{
+        const eventDispatcher = new EventDispatcher()
+        const eventHandler = new SendEmailWhenProductIsCreatedHandler()
+        eventDispatcher.register("ProductCreatedEvent", eventHandler)
+
+        expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]).toMatchObject(eventHandler)
+
+        eventDispatcher.unregisterAll()
+
+        expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"]).toBeUndefined()
+    })
+
 
 })
