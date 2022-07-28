@@ -21,7 +21,7 @@ describe("Event Tests", ()=>{
 
         expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"][0]).toMatchObject(eventHandler)
 
-        eventDispatcher.unregister("ProductCreatedEvent")
+        eventDispatcher.unregister("ProductCreatedEvent", eventHandler)
 
         expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"]).toBeUndefined()
         expect(eventDispatcher.getEventHandlers["ProductCreatedEvent"].length).toBe(0)
