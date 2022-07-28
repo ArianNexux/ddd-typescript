@@ -1,5 +1,6 @@
 import EventDispatcherInterface from "./event-dispatcher.interface";
 import EventHandlerInterface from "./event-handler.interface";
+import EventInterface from "./event.interface";
 
 export default class EventDispatcher implements EventDispatcherInterface{
 
@@ -12,15 +13,24 @@ export default class EventDispatcher implements EventDispatcherInterface{
 
     }
 
-    register(eventName: String, eventHandler: EventHandlerInterface) {
+    register(eventName: string, eventHandler: EventHandlerInterface) {
 
+        if(!this.eventHandlers[eventName]){
+            this.eventHandlers[eventName] = []
+        }
+        this.eventHandlers[eventName].push(eventHandler)
     }
 
-    unregister(eventName: String, eventHandler: EventHandlerInterface) {
-
+    unregister(eventName: string, eventHandler: EventHandlerInterface) {
+        if(this.eventHandlers[eventName]){
+            const index = this.eventHandlers[eventName].indexOf(eventHandler)
+            if(index !== -1){
+                this.eventHandlers[eventName].splice(index, 1)
+            }
+        }
     }
 
     unregisterAll() {
-
+        this.eventHandlers = {}
     }
 }
