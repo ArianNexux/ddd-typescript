@@ -3,7 +3,7 @@ import EnviaConsoleLog1Handler from "./handler/envia-console-log1.handler";
 import CustomerCreatedEvent from "./customer-created.event";
 import EnviaConsoleLog2Handler from "./handler/envia-console-log2.handler";
 import Customer from "../entity/customer";
-import Address from "../entity/address";
+import Address from "../value-object/address";
 import CustomerChangeAddressEvent from "./customer-change-address.event";
 import EnviaConsoleLogHandler from "./handler/envia-console-log.handler";
 
