@@ -46,4 +46,17 @@ describe('Unit test create customer use case', () => {
         await expect(usecaseCreateCustomer.execute(input)).rejects.toThrow("Invalid name")
 
     })
+
+    test('should thrown an error when street is missing', async () => {
+        const customerRepository = MockRepository()
+        input.address.street = ""
+        const output = {
+            id: expect.any(String),
+            ...input
+        }
+
+        const usecaseCreateCustomer = new CreateCustomerUseCase(customerRepository)
+        await expect(usecaseCreateCustomer.execute(input)).rejects.toThrow("Street is required")
+
+    })
 })
