@@ -33,10 +33,8 @@ describe("Unit Test Find Customer use case", () => {
         await sequelize.sync();
     })
 
-    it("should find a customer", async () => {
+    test("should find a customer", async () => {
         const customerRepository = MockRepository();
-
-        await customerRepository.create(customer)
 
         const input = {
             id: "123"
@@ -55,6 +53,31 @@ describe("Unit Test Find Customer use case", () => {
 
         const result = await (new FindCustomerUseCase(customerRepository)).execute(input)
         expect(result).toEqual(output)
+    })
+
+    test('should not find a customer', async () => {
+        const customerRepository = MockRepository();
+
+        customerRepository.find.mockImplementation(() => {
+            throw new Error("Customer not found");
+        })
+        const input = {
+            id: "123"
+        }
+
+        const output = {
+            id: "123",
+            name: "FC3.0",
+            address: {
+                street: "street",
+                zip: "zip",
+                city: "city",
+                number: 123
+            }
+        }
+        expect(async () => {
+            const result = await (new FindCustomerUseCase(customerRepository)).execute(input)
+        }).rejects.toThrow("Customer not found")
     })
     afterEach(async () => {
         await sequelize.close()
