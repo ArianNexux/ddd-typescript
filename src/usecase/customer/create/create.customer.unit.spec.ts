@@ -33,4 +33,17 @@ describe('Unit test create customer use case', () => {
         expect(output).toEqual(result)
 
     })
+
+    test('should thrown an error when name is missing', async () => {
+        const customerRepository = MockRepository()
+        input.name = ""
+        const output = {
+            id: expect.any(String),
+            ...input
+        }
+
+        const usecaseCreateCustomer = new CreateCustomerUseCase(customerRepository)
+        await expect(usecaseCreateCustomer.execute(input)).rejects.toThrow("Invalid name")
+
+    })
 })
