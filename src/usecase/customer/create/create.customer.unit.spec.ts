@@ -1,4 +1,4 @@
-import CreateCustomerUseCase from "./create.customer"
+import CreateCustomerUseCase from "./create.customer.usecase"
 
 const input = {
     name: "FC3.0",
