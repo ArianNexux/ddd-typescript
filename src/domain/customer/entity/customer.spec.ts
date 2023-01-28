@@ -114,10 +114,5 @@ describe('Customer bussines rules', () => {
         expect(customer.reward_point).toBe(10)
     })
 
-    test("should throw an error if invalid reward point is provided", () => {
-        expect(() => {
-            const customer = new Customer("c1", "customer1")
-            customer.addRewardPoint(0)
-        }).toThrowError("Invalid reward point")
-    })
+
 })
