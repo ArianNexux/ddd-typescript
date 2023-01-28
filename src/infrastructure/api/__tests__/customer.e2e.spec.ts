@@ -17,6 +17,7 @@ describe('E2E test for customer', () => {
                     zip: "12435",
                     street: "Cacuaco"
                 }
+
             })
 
         expect(response.status).toBe(200)
@@ -34,6 +35,48 @@ describe('E2E test for customer', () => {
             })
 
         expect(response.status).toBe(500)
+    })
+
+
+    it("should list all customers", async () => {
+        const response = await request(app)
+            .post("/customers")
+            .send({
+                name: "Bento",
+                address: {
+                    city: "Luanda",
+                    number: 123,
+                    zip: "12435",
+                    street: "Cacuaco"
+                },
+                rewardPoints: 10
+
+            })
+        expect(response.status).toBe(200)
+        const response2 = await request(app)
+            .post("/customers")
+            .send({
+                name: "John",
+                address: {
+                    city: "New York",
+                    number: 123,
+                    zip: "12423",
+                    street: "San Francisco"
+                }
+            })
+        expect(response2.status).toBe(200)
+
+        const responseListCustomer = await request(app)
+            .get("/customers")
+            .send()
+
+        expect(responseListCustomer.status).toBe(200)
+        expect(responseListCustomer.body.customers.length).toBe(2)
+        expect(responseListCustomer.body.customers[0].name).toBe("Bento")
+        expect(responseListCustomer.body.customers[1].name).toBe("John")
+        expect(responseListCustomer.body.customers[1].address.street).toBe("San Francisco")
+        expect(responseListCustomer.body.customers[0].address.street).toBe("Cacuaco")
+
     })
 
     afterAll(async () => {
