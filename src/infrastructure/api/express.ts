@@ -20,6 +20,7 @@ async function setupDb() {
     })
 
     sequelize.addModels([CustomerModel, ProductModel]);
+
     await sequelize.sync();
 }
 setupDb();
