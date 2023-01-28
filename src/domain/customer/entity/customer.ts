@@ -58,10 +58,6 @@ export default class Customer {
         this._address = address
     }
     public addRewardPoint(r: number) {
-        if (r <= 0) {
-            throw new Error("Invalid reward point")
-        }
-
         this._reward_point += r;
     }
 
