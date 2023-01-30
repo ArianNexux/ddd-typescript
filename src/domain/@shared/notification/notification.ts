@@ -23,5 +23,11 @@ export class Notification {
         return output.join(', ')
     }
 
+    hasErrors(): boolean {
+        return this.error.length > 0;
+    }
 
+    getErrors(): NotificationErrorProps[] {
+        return this.error;
+    }
 }
