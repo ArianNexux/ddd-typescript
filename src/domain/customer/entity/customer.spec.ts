@@ -1,3 +1,4 @@
+import NotificationError from '../../@shared/notification/notification.error'
 import Address from '../value-object/address'
 import Customer from './customer'
 
@@ -43,13 +44,13 @@ describe('Customer bussines rules', () => {
     test("should throw error on create a customer without id", () => {
         expect(() => {
             const customer = new Customer("", "Bento")
-        }).toThrowError("Invalid id")
+        }).toThrow(NotificationError)
     })
 
     test("should throw error on create a customer without name", () => {
         expect(() => {
             const customer = new Customer("123", "")
-        }).toThrowError("Invalid name")
+        }).toThrow(NotificationError)
     })
 
     test('should change name', () => {
@@ -65,7 +66,7 @@ describe('Customer bussines rules', () => {
         expect(() => {
             const costumer = new Customer("123", "Bento")
             costumer.changeName("")
-        }).toThrowError("Invalid name")
+        }).toThrow(NotificationError)
     })
 
     test('should throw error when activate customer with undefined address', () => {
