@@ -1,32 +1,38 @@
+import Entity from '../../@shared/entity/entity.abstract';
+import NotificationError from '../../@shared/notification/notification.error';
 import Address from '../value-object/address'
-export default class Customer {
+export default class Customer extends Entity {
 
     private _address: Address
     private _reward_point: number = 0;
 
     constructor(
-        private _id: string,
+        id: string,
         private _name: string,
         private _active = true
     ) {
+        super();
+        this.id = id;
         this.validate()
+
+        if (this.notification.hasErrors()) {
+            throw new NotificationError(this.notification.getErrors());
+        }
     }
 
     validate() {
         if (this._name.length == 0) {
-            throw new Error("Invalid name")
+            this.notification.addError({ context: "customer", message: "Name is required" })
         }
-        if (this._id.length == 0) {
-            throw new Error("Invalid id")
+        if (this.id.length == 0) {
+            this.notification.addError({ context: "customer", message: "Id is required" })
         }
     }
 
     get name(): string {
         return this._name;
     }
-    get id(): string {
-        return this._id;
-    }
+
     get address(): Address {
         return this._address
     }
@@ -38,6 +44,9 @@ export default class Customer {
     public changeName(name: string) {
         this._name = name;
         this.validate()
+        if (this.notification.hasErrors()) {
+            throw new NotificationError(this.notification.getErrors());
+        }
     }
     public activate() {
         if (this._address === undefined) {
