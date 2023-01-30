@@ -15,9 +15,11 @@ export class Notification {
     messages(context?: string) {
         const output = [];
         this.error.map(notification => {
+
             if (context === notification.context || context === undefined) {
                 output.push(`${notification.context}: ${notification.message}`)
             }
+
         })
 
         return output.join(', ')
