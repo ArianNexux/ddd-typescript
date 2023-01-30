@@ -1,3 +1,4 @@
+import NotificationError from "../../../domain/@shared/notification/notification.error"
 import CreateCustomerUseCase from "./create.customer.usecase"
 
 const input = {
@@ -43,7 +44,7 @@ describe('Unit test create customer use case', () => {
         }
 
         const usecaseCreateCustomer = new CreateCustomerUseCase(customerRepository)
-        await expect(usecaseCreateCustomer.execute(input)).rejects.toThrow("Invalid name")
+        await expect(usecaseCreateCustomer.execute(input)).rejects.toThrow(NotificationError)
 
     })
 
