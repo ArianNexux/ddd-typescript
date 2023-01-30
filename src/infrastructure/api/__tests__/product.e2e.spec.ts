@@ -2,7 +2,7 @@ import { app, sequelize } from '../express'
 import request from 'supertest'
 
 describe('End to End Tests for products', () => {
-    beforeAll(async () => {
+    beforeEach(async () => {
         await sequelize.sync({ force: true })
     })
 
@@ -57,7 +57,7 @@ describe('End to End Tests for products', () => {
         const responseListProduct1 = await request(app).
             get('/products').
             send()
-
+        console.log(responseListProduct1.body.products)
         expect(responseListProduct1.status).toBe(200)
         expect(responseListProduct1.body.products[0].name).toBe(product1.name)
         expect(responseListProduct1.body.products[1].name).toBe(product2.name)
