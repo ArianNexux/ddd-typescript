@@ -19,13 +19,13 @@ describe('Product unit test', () => {
 
     test('should throw an error if no name is provided', () => {
         expect(() => {
-            let product = new Product("", "", 0)
+            let product = new Product("123", "", 10)
         }).toThrowError("product: Name is required")
     })
 
     test('should throw an error if no name, price and id was provided is provided', () => {
         expect(() => {
-            let product = new Product("123", "", 10)
+            let product = new Product("", "", 0)
         }).toThrowError("product: Id is required, product: Name is required, product: Invalid price provided")
     })
 
