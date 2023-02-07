@@ -44,13 +44,19 @@ describe('Customer bussines rules', () => {
     test("should throw error on create a customer without id", () => {
         expect(() => {
             const customer = new Customer("", "Bento")
-        }).toThrow(NotificationError)
+        }).toThrowError("customer: Id is required")
     })
 
     test("should throw error on create a customer without name", () => {
         expect(() => {
             const customer = new Customer("123", "")
-        }).toThrow(NotificationError)
+        }).toThrowError("customer: Name is required")
+    })
+
+    test("should throw error on create a customer without id and name", () => {
+        expect(() => {
+            const customer = new Customer("", "")
+        }).toThrowError("customer: Name is required, customer: Id is required")
     })
 
     test('should change name', () => {
